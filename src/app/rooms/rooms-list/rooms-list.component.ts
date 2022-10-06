@@ -1,5 +1,5 @@
 import { RoomList } from './../rooms';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
 
 
 @Component({
@@ -12,9 +12,16 @@ export class RoomsListComponent implements OnInit {
 
   @Input() rooms: RoomList[] = []
 
+  @Input() title: string = '';
+
   @Output() selectedRoom = new EventEmitter<RoomList>();
 
   constructor() { }
+
+  ngOnChanges(changes:SimpleChange): void {
+    console.log(changes);
+   
+  }
 
   ngOnInit(): void {
   }

@@ -18,7 +18,7 @@
 </div>
 
 <div *ngIf="rooms.availableRooms > 0">
-  <app-rooms-list [rooms]="roomList"
+  <app-rooms-list [rooms]="roomList" [title] = "title"
   (selectedRoom)="selectRoom($event)">
   </app-rooms-list>
 </div>
