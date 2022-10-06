@@ -14,6 +14,8 @@ export class RoomsComponent implements OnInit {
 
   hideRooms = false;
 
+  selectedRoom! : RoomList;
+
   rooms: Room = {
     totalRooms: 20,
     availableRooms: 10,
@@ -60,7 +62,21 @@ export class RoomsComponent implements OnInit {
   }
 
   selectRoom(room: RoomList) {
-    console.log(room)
+    this.selectedRoom = room
+  }
+
+  addRoom() {
+    const room: RoomList = {
+      roomNumber: 4,
+      roomType: 'private suite',
+      amenities: 'Air conditioner, Free wi-fi, TV, Bathroom, Kitchen',
+      price: 2000,
+      photos: 'https://unsplash.com/photos/51adhgg5KkE',
+      checkinTime: new Date('10-oct-2022'),
+      checkoutTime: new Date('15-oct-2022')
+    }
+
+    this.roomList = [...this.roomList, room];
   }
 
 }
