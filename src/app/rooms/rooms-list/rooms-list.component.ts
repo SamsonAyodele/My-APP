@@ -1,5 +1,7 @@
 import { RoomList } from './../rooms';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
+import { OnChanges } from '@angular/core';
+import { SimpleChanges } from '@angular/core';
 
 
 @Component({
@@ -8,7 +10,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
   styleUrls: ['./rooms-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RoomsListComponent implements OnInit {
+export class RoomsListComponent implements OnInit, OnChanges {
 
   @Input() rooms: RoomList[] = []
 
@@ -18,9 +20,11 @@ export class RoomsListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnChanges(changes:SimpleChange): void {
+  ngOnChanges(changes:SimpleChanges): void {
     console.log(changes);
-   
+   if(changes['title']) {
+    this.title = changes['title'].currentValue.toUpperCase();
+   }
   }
 
   ngOnInit(): void {
