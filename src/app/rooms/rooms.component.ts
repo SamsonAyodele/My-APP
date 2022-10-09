@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { HeaderComponent } from './../header/header.component';
+import { AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Room, RoomList } from './rooms';
 
 @Component({
@@ -6,7 +7,7 @@ import { Room, RoomList } from './rooms';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.css']
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   hotelName = 'Hilton Hotel';
 
@@ -23,6 +24,8 @@ export class RoomsComponent implements OnInit {
   }
 
   title = 'Room List';
+
+  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
   roomList: RoomList[] = [
     {
@@ -80,6 +83,14 @@ export class RoomsComponent implements OnInit {
     }
 
     this.roomList = [...this.roomList, room];
+  }
+
+  ngAfterViewInit(): void {
+    this.headerComponent.title = "Rooms View"
+  }
+
+  ngAfterViewChecked(): void {
+    
   }
 
 }
