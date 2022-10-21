@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http'
 import { RoomList } from './../rooms';
 import { Injectable } from '@angular/core';
 // import { RoomsListComponent } from '../rooms-list/rooms-list.component';
@@ -36,7 +37,9 @@ export class RoomsService {
       checkoutTime: new Date('01-oct-2022'),
     }
   ]
-  constructor() { }
+  constructor() {
+    console.log('Room services initialized...')
+   }
 
   getRooms() {
     return this.roomList;

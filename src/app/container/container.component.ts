@@ -1,16 +1,18 @@
+import { RoomsService } from './../rooms/services/rooms.service';
 import { EmployeeComponent } from './../employee/employee.component';
-import { Component, OnInit, AfterContentInit, ContentChild } from '@angular/core';
+import { Component, OnInit, AfterContentInit, ContentChild, Host } from '@angular/core';
 
 @Component({
   selector: 'app-container',
   templateUrl: './container.component.html',
-  styleUrls: ['./container.component.css']
+  styleUrls: ['./container.component.css'],
+  providers :[RoomsService]
 })
 export class ContainerComponent implements OnInit, AfterContentInit {
 
     @ContentChild(EmployeeComponent) employee ! : EmployeeComponent;
 
-  constructor() { }
+  constructor(@Host() private roomsService: RoomsService) { }
 
   ngOnInit(): void {
   }

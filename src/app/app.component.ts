@@ -1,5 +1,6 @@
+import { LoggerService } from './logger.service';
 import { RoomsComponent } from './rooms/rooms.component';
-import { Component, ViewChild, ViewContainerRef, OnInit, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, OnInit, AfterViewInit, Optional } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -16,5 +17,12 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit() {
     const componentRef = this.vcr.createComponent(RoomsComponent);
     componentRef.instance.numberOfRooms = 50;
+  }
+
+  constructor(@Optional() private LoggerService: LoggerService) {}
+
+
+  ngOnInit() {
+    this.LoggerService?.log('AppComponent.ngOnInit()')
   }
 }

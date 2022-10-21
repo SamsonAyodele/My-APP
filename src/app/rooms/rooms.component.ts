@@ -1,6 +1,6 @@
 import { RoomsService } from './services/rooms.service';
 import { HeaderComponent } from './../header/header.component';
-import { AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild, SkipSelf } from '@angular/core';
 import { Room, RoomList } from './rooms';
 
 @Component({
@@ -29,8 +29,8 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
   roomList: RoomList[] = [];
 
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
-  
-  constructor(private roomsService: RoomsService) { }
+
+  constructor(@SkipSelf() private roomsService: RoomsService) { }
 
   ngOnInit(): void {
     this.roomList = this.roomsService.getRooms();
