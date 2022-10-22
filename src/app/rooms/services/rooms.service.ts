@@ -1,6 +1,9 @@
+import { API_SERVICE_CONFIG } from './../../AppConfig/appconfig.service';
+import { AppConfig } from './../../AppConfig/appconfig.interface';
+import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http'
 import { RoomList } from './../rooms';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 // import { RoomsListComponent } from '../rooms-list/rooms-list.component';
 
 @Injectable({
@@ -37,7 +40,8 @@ export class RoomsService {
       checkoutTime: new Date('01-oct-2022'),
     }
   ]
-  constructor() {
+  constructor(@Inject(API_SERVICE_CONFIG) private config:AppConfig) {
+    console.log(environment.apiEndpoint)
     console.log('Room services initialized...')
    }
 
