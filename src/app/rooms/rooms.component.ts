@@ -14,7 +14,7 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   numberOfRooms = 10;
 
-  hideRooms = false;
+  hideRooms = true;
 
   selectedRoom! : RoomList;
 
@@ -33,7 +33,9 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
   constructor(@SkipSelf() private roomsService: RoomsService) { }
 
   ngOnInit(): void {
-    this.roomList = this.roomsService.getRooms();
+    this.roomsService.getRooms().subscribe(rooms =>{
+      this.roomList = rooms;
+    });
   }
 
   toggle() {
@@ -57,6 +59,18 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     }
 
     this.roomList = [...this.roomList, room];
+  }
+
+  editRoom() {
+    const room: RoomList = {
+      roomNumber: 3,
+      roomType: 'private suite',
+      amenities: 'Air conditioner, Free wi-fi, TV, Bathroom, Kitchen',
+      price: 2000,
+      photos: 'https://unsplash.com/photos/51adhgg5KkE',
+      checkinTime: new Date('10-oct-2022'),
+      checkoutTime: new Date('15-oct-2022')
+    }
   }
 
   ngAfterViewInit(): void {

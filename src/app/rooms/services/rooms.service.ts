@@ -40,12 +40,20 @@ export class RoomsService {
       checkoutTime: new Date('01-oct-2022'),
     }
   ]
-  constructor(@Inject(API_SERVICE_CONFIG) private config:AppConfig) {
+  constructor(@Inject(API_SERVICE_CONFIG) private config:AppConfig, private http: HttpClient) {
     console.log(environment.apiEndpoint)
     console.log('Room services initialized...')
    }
 
   getRooms() {
-    return this.roomList;
+    return this.http.get<RoomList[]>('/api/rooms');
   }
+
+  // addRooms() {
+  //   return this.http.post<RoomList[]>('/api/rooms', room);
+  // }
+
+  // editRooms() {
+  //   return this.http.put<RoomList[]>('/api/rooms', room);
+  // }
 }
